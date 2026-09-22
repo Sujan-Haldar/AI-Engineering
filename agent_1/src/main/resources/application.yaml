@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: AiAgent
+  ai:
+    google:
+      genai:
+        api-key: XXXXXXXXXXXXXXXXXXX
+        chat:
+          model: gemini-3.5-flash-lite
+server:
+  port: 8081
