@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Glass Calculator & Unit Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="calculator-container">
+        <!-- Header & Mode Switcher -->
+        <header class="calc-header">
+            <div class="brand">
+                <i class="fa-solid fa-calculator"></i>
+                <span id="brandTitle">CalcPro</span>
+            </div>
+            <div class="controls">
+                <button id="modeToggle" class="icon-btn" title="Toggle Scientific Mode">
+                    <i class="fa-solid fa-flask"></i>
+                    <span>Scientific</span>
+                </button>
+                <button id="converterToggle" class="icon-btn" title="Toggle Length Converter">
+                    <i class="fa-solid fa-ruler-combined"></i>
+                    <span>Converter</span>
+                </button>
+                <button id="historyToggle" class="icon-btn" title="Toggle History">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </button>
+                <button id="themeToggle" class="icon-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Display & Keypad Area -->
+        <div class="calc-main-wrapper">
+            <!-- Calculator Box -->
+            <div class="calculator-box" id="calculatorBox">
+                <!-- Display -->
+                <div class="display">
+                    <div class="history-preview" id="historyPreview"></div>
+                    <div class="main-display" id="mainDisplay">0</div>
+                </div>
+
+                <!-- Keypads -->
+                <div class="keypads-container">
+                    <!-- Scientific Keypad (Hidden by default) -->
+                    <div class="keypad scientific-keypad" id="scientificKeypad">
+                        <button class="btn fn" data-action="sin">sin</button>
+                        <button class="btn fn" data-action="cos">cos</button>
+                        <button class="btn fn" data-action="tan">tan</button>
+                        <button class="btn fn" data-action="log">log</button>
+                        <button class="btn fn" data-action="ln">ln</button>
+                        <button class="btn fn" data-action="sqrt">√</button>
+                        <button class="btn fn" data-action="square">x²</button>
+                        <button class="btn fn" data-action="power">x^y</button>
+                        <button class="btn fn" data-action="pi">π</button>
+                        <button class="btn fn" data-action="e">e</button>
+                        <button class="btn fn" data-action="fact">n!</button>
+                        <button class="btn fn" data-action="bracket">(</button>
+                    </div>
+
+                    <!-- Standard Keypad -->
+                    <div class="keypad standard-keypad">
+                        <button class="btn action" data-action="clear">AC</button>
+                        <button class="btn action" data-action="delete"><i class="fa-solid fa-delete-left"></i></button>
+                        <button class="btn operator" data-action="percent">%</button>
+                        <button class="btn operator" data-action="divide">÷</button>
+
+                        <button class="btn number" data-value="7">7</button>
+                        <button class="btn number" data-value="8">8</button>
+                        <button class="btn number" data-value="9">9</button>
+                        <button class="btn operator" data-action="multiply">×</button>
+
+                        <button class="btn number" data-value="4">4</button>
+                        <button class="btn number" data-value="5">5</button>
+                        <button class="btn number" data-value="6">6</button>
+                        <button class="btn operator" data-action="subtract">-</button>
+
+                        <button class="btn number" data-value="1">1</button>
+                        <button class="btn number" data-value="2">2</button>
+                        <button class="btn number" data-value="3">3</button>
+                        <button class="btn operator" data-action="add">+</button>
+
+                        <button class="btn number zero" data-value="0">0</button>
+                        <button class="btn number" data-value=".">.</button>
+                        <button class="btn equals" data-action="calculate">=</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Length Converter Box (Hidden by default) -->
+            <div class="converter-box" id="converterBox">
+                <div class="converter-header-title">
+                    <i class="fa-solid fa-ruler"></i>
+                    <span>Length Converter</span>
+                </div>
+                
+                <div class="converter-fields">
+                    <!-- From Field -->
+                    <div class="convert-group">
+                        <label for="fromValue">From</label>
+                        <div class="convert-input-row">
+                            <input type="number" id="fromValue" value="1" step="any" placeholder="Enter value">
+                            <select id="fromUnit">
+                                <option value="cm">Centimeters (cm)</option>
+                                <option value="inch">Inches (in)</option>
+                                <option value="m">Meters (m)</option>
+                                <option value="ft">Feet (ft)</option>
+                                <option value="km">Kilometers (km)</option>
+                                <option value="mi">Miles (mi)</option>
+                                <option value="mm">Millimeters (mm)</option>
+                                <option value="yd">Yards (yd)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="convert-swap-container">
+                        <button id="swapUnitsBtn" class="swap-btn" title="Swap Units">
+                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </button>
+                    </div>
+
+                    <!-- To Field -->
+                    <div class="convert-group">
+                        <label for="toValue">To</label>
+                        <div class="convert-input-row">
+                            <input type="number" id="toValue" readonly placeholder="Result">
+                            <select id="toUnit">
+                                <option value="inch" selected>Inches (in)</option>
+                                <option value="cm">Centimeters (cm)</option>
+                                <option value="m">Meters (m)</option>
+                                <option value="ft">Feet (ft)</option>
+                                <option value="km">Kilometers (km)</option>
+                                <option value="mi">Miles (mi)</option>
+                                <option value="mm">Millimeters (mm)</option>
+                                <option value="yd">Yards (yd)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick conversion pill buttons -->
+                <div class="quick-converts">
+                    <button class="quick-pill" data-from="cm" data-to="inch">cm ⇄ in</button>
+                    <button class="quick-pill" data-from="m" data-to="ft">m ⇄ ft</button>
+                    <button class="quick-pill" data-from="km" data-to="mi">km ⇄ mi</button>
+                    <button class="quick-pill" data-from="mm" data-to="inch">mm ⇄ in</button>
+                </div>
+            </div>
+
+            <!-- History Sidebar -->
+            <aside class="history-sidebar" id="historySidebar">
+                <div class="history-header">
+                    <h3>Calculation History</h3>
+                    <button id="clearHistory" class="clear-history-btn">Clear All</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <div class="empty-history">No history yet</div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="calc-footer">
+            <p>Made with ✨ &bull; CalcPro v2.5</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

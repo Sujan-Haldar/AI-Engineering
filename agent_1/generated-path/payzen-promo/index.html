@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayZen | The Next-Gen Digital Payment Solution</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="container">
+            <span>🚀 PayZen v2.0 Beta is live!</span> <a href="#waitlist">Request early access <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                </div>
+                <span>Pay<span class="gradient-text">Zen</span></span>
+            </a>
+            <nav class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#simulator" class="nav-link">Live Demo</a>
+                <a href="#security" class="nav-link">Security</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#simulator" class="btn btn-secondary">Try Sandbox</a>
+                <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" id="closeMenu"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#features" class="mobile-link">Features</a>
+        <a href="#simulator" class="mobile-link">Live Demo</a>
+        <a href="#security" class="mobile-link">Security</a>
+        <a href="#pricing" class="mobile-link">Pricing</a>
+        <a href="#faq" class="mobile-link">FAQ</a>
+        <div class="mobile-actions">
+            <a href="#waitlist" class="btn btn-primary w-100">Join Waitlist</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-container">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Next-Gen Financial Infrastructure</span>
+                </div>
+                <h1>Payments engineered for the <span class="gradient-text">speed of thought</span></h1>
+                <p>Accept cards, crypto, instant bank transfers, and global wallets through a single lightning-fast API and stunning user checkout experience.</p>
+                <div class="hero-btns">
+                    <a href="#waitlist" class="btn btn-primary btn-lg">
+                        Get Early Access <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#simulator" class="btn btn-glass btn-lg">
+                        <i class="fa-solid fa-play"></i> Try Interactive Demo
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>99.99%</h3>
+                        <p>Uptime SLA</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <h3>&lt; 180ms</h3>
+                        <p>Global Latency</p>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <h3>180+</h3>
+                        <p>Currencies</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="floating-card-wrapper">
+                    <!-- Main Mockup Dashboard -->
+                    <div class="pay-card-mockup">
+                        <div class="card-header-mockup">
+                            <div class="user-info">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar">
+                                <div>
+                                    <h4>Sarah Jenkins</h4>
+                                    <span>Verified Merchant</span>
+                                </div>
+                            </div>
+                            <span class="live-badge"><span class="dot"></span> Live</span>
+                        </div>
+                        <div class="card-balance">
+                            <span>Total Volume Today</span>
+                            <h2>$48,294.50</h2>
+                            <div class="trend positive">
+                                <i class="fa-solid fa-arrow-trend-up"></i> +24.8% vs yesterday
+                            </div>
+                        </div>
+                        <div class="mini-chart">
+                            <div class="bar" style="height: 40%"></div>
+                            <div class="bar" style="height: 65%"></div>
+                            <div class="bar" style="height: 55%"></div>
+                            <div class="bar" style="height: 85%"></div>
+                            <div class="bar" style="height: 70%"></div>
+                            <div class="bar" style="height: 95%"></div>
+                            <div class="bar active" style="height: 100%"></div>
+                        </div>
+                        <div class="recent-tx">
+                            <div class="tx-item">
+                                <div class="tx-icon apple"><i class="fa-brands fa-apple-pay"></i></div>
+                                <div class="tx-details">
+                                    <h5>Apple Pay Checkout</h5>
+                                    <span>Just now</span>
+                                </div>
+                                <div class="tx-amount positive">+$149.00</div>
+                            </div>
+                            <div class="tx-item">
+                                <div class="tx-icon crypto"><i class="fa-solid fa-coins"></i></div>
+                                <div class="tx-details">
+                                    <h5>USDC Instant Settlement</h5>
+                                    <span>2 mins ago</span>
+                                </div>
+                                <div class="tx-amount positive">+$1,250.00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Floating Badge 1 -->
+                    <div class="float-badge fb-1" data-aos="fade-down" data-aos-delay="500">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div>
+                            <h5>Zero Fraud Rate</h5>
+                            <span>AI Sentinel Protected</span>
+                        </div>
+                    </div>
+                    <!-- Floating Badge 2 -->
+                    <div class="float-badge fb-2" data-aos="fade-up" data-aos-delay="700">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Instant Payouts Enabled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Logo Marquee -->
+    <section class="logos-section">
+        <div class="container">
+            <p>TRUSTED BY FAST-GROWING INNOVATORS WORLDWIDE</p>
+            <div class="brand-grid">
+                <div class="brand-item"><i class="fa-solid fa-cube"></i> NovaCorp</div>
+                <div class="brand-item"><i class="fa-solid fa-bolt"></i> Veloce AI</div>
+                <div class="brand-item"><i class="fa-solid fa-globe"></i> GlobalSync</div>
+                <div class="brand-item"><i class="fa-solid fa-shield"></i> FinGuard</div>
+                <div class="brand-item"><i class="fa-solid fa-rocket"></i> OrbitPay</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Simulator / Prototype Sandbox Section -->
+    <section id="simulator" class="simulator-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <span class="badge">Interactive Prototype</span>
+                <h2>Experience the <span class="gradient-text">PayZen Checkout</span></h2>
+                <p>Test drive our frictionless 1-click checkout widget right now. Select a product, customize payment methods, and experience instant processing.</p>
+            </div>
+
+            <div class="simulator-container" data-aos="fade-up" data-aos-delay="200">
+                <!-- Simulator Left: Configurator -->
+                <div class="simulator-controls">
+                    <h3>1. Customize Order</h3>
+                    <div class="control-group">
+                        <label>Select Item / Plan</label>
+                        <select id="productSelect" class="form-control">
+                            <option value="49" data-name="Pro SaaS Monthly Subscription">Pro SaaS Monthly ($49.00)</option>
+                            <option value="199" data-name="Enterprise API License">Enterprise API License ($199.00)</option>
+                            <option value="12.50" data-name="Digital Creator Toolkit">Digital Creator Toolkit ($12.50)</option>
+                            <option value="499" data-name="AI Neural Accelerator Bundle">AI Neural Accelerator ($499.00)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Customer Currency</label>
+                        <div class="currency-pills">
+                            <button class="pill active" data-curr="USD" data-sym="$">USD ($)</button>
+                            <button class="pill" data-curr="EUR" data-sym="€">EUR (€)</button>
+                            <button class="pill" data-curr="GBP" data-sym="£">GBP (£)</button>
+                            <button class="pill" data-curr="USDC" data-sym="⚡">USDC</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Payment Method Simulator</label>
+                        <div class="method-selector">
+                            <div class="method-card active" data-method="card">
+                                <i class="fa-solid fa-credit-card"></i>
+                                <span>Card</span>
+                            </div>
+                            <div class="method-card" data-method="apple">
+                                <i class="fa-brands fa-apple-pay"></i>
+                                <span>Apple Pay</span>
+                            </div>
+                            <div class="method-card" data-method="crypto">
+                                <i class="fa-solid fa-coins"></i>
+                                <span>Crypto</span>
+                            </div>
+                            <div class="method-card" data-method="klarna">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span>Buy Now Pay Later</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group toggle-row">
+                        <span>Enable 1-Click Biometric Auth</span>
+                        <label class="switch">
+                            <input type="checkbox" id="biometricToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Simulator Right: Live Widget Modal -->
+                <div class="simulator-preview">
+                    <div class="checkout-widget">
+                        <div class="widget-top">
+                            <div class="merchant-badge">
+                                <i class="fa-solid fa-bolt-lightning"></i> PayZen Secure Checkout
+                            </div>
+                            <div class="secure-ssl"><i class="fa-solid fa-lock"></i> 256-bit SSL</div>
+                        </div>
+
+                        <div class="widget-summary">
+                            <div class="item-details">
+                                <h4 id="summaryProductName">Pro SaaS Monthly Subscription</h4>
+                                <span>Instant digital delivery</span>
+                            </div>
+                            <div class="item-price" id="summaryProductPrice">$49.00</div>
+                        </div>
+
+                        <!-- Dynamic Form based on method -->
+                        <div id="paymentFormContainer" class="payment-form-body">
+                            <!-- Card Form -->
+                            <div class="pay-form-view active" id="view-card">
+                                <div class="input-field">
+                                    <label>Cardholder Name</label>
+                                    <input type="text" value="Alex Rivera" class="form-control">
+                                </div>
+                                <div class="input-field">
+                                    <label>Card Number</label>
+                                    <div class="card-input-wrap">
+                                        <input type="text" value="4532 •••• •••• 8839" class="form-control">
+                                        <i class="fa-brands fa-cc-visa visa-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="input-field">
+                                        <label>Expires</label>
+                                        <input type="text" value="08/28" class="form-control">
+                                    </div>
+                                    <div class="input-field">
+                                        <label>CVC</label>
+                                        <input type="text" value="382" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Apple Pay View -->
+                            <div class="pay-form-view" id="view-apple" style="display: none;">
+                                <div class="apple-pay-box">
+                                    <i class="fa-brands fa-apple-pay fa-3x"></i>
+                                    <p>Double click side button to pay with Apple Wallet</p>
+                                    <div class="face-id-anim">
+                                        <i class="fa-solid fa-face-recognition"></i>
+                                        <span>Face ID Verification Ready</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Crypto View -->
+                            <div class="pay-form-view" id="view-crypto" style="display: none;">
+                                <div class="crypto-box">
+                                    <div class="qr-placeholder">
+                                        <i class="fa-solid fa-qrcode"></i>
+                                    </div>
+                                    <p>Scan with any Web3 wallet (MetaMask, Phantom)</p>
+                                    <div class="crypto-tag">Network: Arbitrum One / Ethereum</div>
+                                </div>
+                            </div>
+
+                            <!-- Klarna View -->
+                            <div class="pay-form-view" id="view-klarna" style="display: none;">
+                                <div class="bnpl-box">
+                                    <div class="bnpl-logo">Klarna.</div>
+                                    <p>Pay in 4 interest-free payments of <strong id="installmentsAmount">$12.25</strong> every 2 weeks.</p>
+                                    <div class="installments-timeline">
+                                        <div class="step active">Today<br><span>$12.25</span></div>
+                                        <div class="step">2 Wks<br><span>$12.25</span></div>
+                                        <div class="step">4 Wks<br><span>$12.25</span></div>
+                                        <div class="step">6 Wks<br><span>$12.25</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-pay-action" id="payNowBtn">
+                            <span>Pay <span id="payButtonAmount">$49.00</span></span>
+                            <i class="fa-solid fa-shield-check"></i>
+                        </button>
+
+                        <div class="widget-footer-secure">
+                            <span>Powered by <strong>PayZen Engine</strong></span>
+                            <span>PCI-DSS Level 1 Compliant</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal Popup -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-card">
+            <div class="success-icon-animated">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2>Payment Successful!</h2>
+            <p>Transaction ID: <code id="txIdCode">#PZ-8839-4920</code></p>
+            <div class="receipt-box">
+                <div class="receipt-row">
+                    <span>Amount Paid</span>
+                    <strong id="receiptAmount">$49.00</strong>
+                </div>
+                <div class="receipt-row">
+                    <span>Processing Time</span>
+                    <span>142 ms</span>
+                </div>
+                <div class="receipt-row">
+                    <span>Routing</span>
+                    <span>Direct API Gateway</span>
+                </div>
+            </div>
+            <button class="btn btn-primary w-100" id="closeModalBtn">Done / Test Another</button>
+        </div>
+    </div>
+
+    <!-- Core Features Grid Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <span class="badge">Built For Modern Scale</span>
+                <h2>Everything you need to <span class="gradient-text">monetize globally</span></h2>
+                <p>Engineered from the ground up for high-conversion checkouts, zero downtime, and absolute security.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon gradient-1">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <h3>Sub-Second Settlement</h3>
+                    <p>Funds clear instantly into your liquidity pool or bank account. Say goodbye to 3-day ACH settlement delays.</p>
+                    <a href="#" class="learn-more">Explore API <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon gradient-2">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3>AI Fraud Sentinel</h3>
+                    <p>Machine learning models trained on billions of global data points instantly block fraudulent attempts with 99.98% accuracy.</p>
+                    <a href="#" class="learn-more">How AI Works <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon gradient-3">
+                        <i class="fa-solid fa-globe-americas"></i>
+                    </div>
+                    <h3>Multi-Currency &amp; Crypto</h3>
+                    <p>Accept fiat in 180+ local currencies and settle in stablecoins (USDC/USDT) or local fiat seamlessly with automatic FX conversion.</p>
+                    <a href="#" class="learn-more">View Currencies <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon gradient-4">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3>Adaptive 1-Click Checkout</h3>
+                    <p>Recognizes returning buyers across any merchant on the PayZen network, enabling instant 1-click checkout without passwords.</p>
+                    <a href="#" class="learn-more">Network Effect <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon gradient-5">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3>Developer First SDKs</h3>
+                    <p>Drop-in React components, iOS/Android SDKs, and clean REST APIs. Go from zero to live payments in under 30 minutes.</p>
+                    <a href="#" class="learn-more">Read Docs <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon gradient-6">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Granular revenue dashboards, cohort retention metrics, and automated tax calculation across 50+ US states and EU VAT zones.</p>
+                    <a href="#" class="learn-more">View Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Snippet / Developer Section -->
+    <section class="code-section">
+        <div class="container code-container">
+            <div class="code-info" data-aos="fade-right">
+                <span class="badge">Developer Experience</span>
+                <h2>Built by developers, <span class="gradient-text">for developers</span></h2>
+                <p>We believe integration shouldn't be painful. With our modern SDKs, you can embed a fully customized payment modal with just 3 lines of code.</p>
+                <ul class="code-checklist">
+                    <li><i class="fa-solid fa-circle-check"></i> TypeScript ready with full type definitions</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Automatic webhook retries &amp; signature verification</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Sandbox mode with simulated test cards &amp; webhooks</li>
+                </ul>
+                <div class="code-cta">
+                    <a href="#waitlist" class="btn btn-primary">Get API Keys</a>
+                    <a href="#" class="btn btn-glass">Explore Documentation</a>
+                </div>
+            </div>
+
+            <div class="code-box-wrapper" data-aos="fade-left">
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="code-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="file-name">CheckoutModal.tsx</span>
+                        <div class="code-lang"><i class="fa-brands fa-react"></i> React</div>
+                    </div>
+                    <pre class="code-content"><code><span class="keyword">import</span> { PayZenProvider, usePayZen } <span class="keyword">from</span> <span class="string">'@payzen/react'</span>;
+
+<span class="keyword">export function</span> <span class="function">CheckoutButton</span>() {
+  <span class="keyword">const</span> { <span class="variable">openCheckout</span> } = <span class="function">usePayZen</span>();
+
+  <span class="keyword">return</span> (
+    &lt;<span class="tag">button</span> 
+      <span class="attr">onClick</span>={() =&gt; <span class="function">openCheckout</span>({
+        <span class="property">amount</span>: <span class="number">4900</span>,
+        <span class="property">currency</span>: <span class="string">'USD'</span>,
+        <span class="property">instantPay</span>: <span class="boolean">true</span>
+      })}
+    &gt;
+      Pay $49.00 with PayZen
+    &lt;/<span class="tag">button</span>&gt;
+  );
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security & Compliance Section -->
+    <section id="security" class="security-section">
+        <div class="container text-center">
+            <div class="section-header" data-aos="fade-up">
+                <span class="badge">Enterprise Grade</span>
+                <h2>Uncompromising <span class="gradient-text">Security &amp; Compliance</span></h2>
+                <p>Your customers' data is protected by military-grade encryption and audited security frameworks.</p>
+            </div>
+
+            <div class="security-grid">
+                <div class="sec-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-award"></i>
+                    <h4>PCI-DSS Level 1</h4>
+                    <p>The highest grade of security certification in the global payment industry.</p>
+                </div>
+                <div class="sec-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-shield-virus"></i>
+                    <h4>End-to-End Encryption</h4>
+                    <p>Tokenized card vaults ensure raw card data never touches your servers.</p>
+                </div>
+                <div class="sec-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-file-shield"></i>
+                    <h4>SOC 2 Type II</h4>
+                    <p>Rigidly tested and verified operational security controls year-round.</p>
+                </div>
+                <div class="sec-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <h4>GDPR &amp; CCPA Ready</h4>
+                    <p>Strict data privacy compliance for European and global consumers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <span class="badge">Transparent Pricing</span>
+                <h2>Simple, predictable <span class="gradient-text">transaction fees</span></h2>
+                <p>No monthly subscription fees for startups. You only pay when you successfully get paid.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Starter Tier -->
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tier-name">Starter</div>
+                    <div class="tier-price">
+                        <h2>1.4% + $0.20</h2>
+                        <span>per successful card transaction</span>
+                    </div>
+                    <p>Perfect for early-stage startups and indie creators.</p>
+                    <ul class="tier-features">
+                        <li><i class="fa-solid fa-check"></i> Standard checkout widget</li>
+                        <li><i class="fa-solid fa-check"></i> Apple Pay &amp; Google Pay</li>
+                        <li><i class="fa-solid fa-check"></i> Basic fraud protection</li>
+                        <li><i class="fa-solid fa-check"></i> 2-day payouts</li>
+                    </ul>
+                    <a href="#waitlist" class="btn btn-glass w-100">Start Free</a>
+                </div>
+
+                <!-- Pro Tier (Highlighted) -->
+                <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="200">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="tier-name">Growth Pro</div>
+                    <div class="tier-price">
+                        <h2>0.9% + $0.15</h2>
+                        <span>per successful card transaction</span>
+                    </div>
+                    <p>For scaling businesses requiring advanced AI and instant payouts.</p>
+                    <ul class="tier-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Starter</li>
+                        <li><i class="fa-solid fa-check"></i> AI Fraud Sentinel Pro</li>
+                        <li><i class="fa-solid fa-check"></i> Instant multi-currency settlement</li>
+                        <li><i class="fa-solid fa-check"></i> Custom branding &amp; domains</li>
+                        <li><i class="fa-solid fa-check"></i> Instant bank payouts (24/7)</li>
+                    </ul>
+                    <a href="#waitlist" class="btn btn-primary w-100">Claim Pro Access</a>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tier-name">Enterprise</div>
+                    <div class="tier-price">
+                        <h2>Custom</h2>
+                        <span>volume-based interchange</span>
+                    </div>
+                    <p>For high-volume platforms processing $1M+/month.</p>
+                    <ul class="tier-features">
+                        <li><i class="fa-solid fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fa-solid fa-check"></i> Custom interchange optimization</li>
+                        <li><i class="fa-solid fa-check"></i> 99.999% SLA guarantee</li>
+                        <li><i class="fa-solid fa-check"></i> On-premise deployment option</li>
+                    </ul>
+                    <a href="#waitlist" class="btn btn-glass w-100">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <span class="badge">Customer Success</span>
+                <h2>Loved by founders &amp; <span class="gradient-text">product leaders</span></h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"Switching our SaaS checkout to PayZen boosted our conversion rate by 18.4% almost overnight. The 1-click Apple Pay flow is butter smooth."</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Client">
+                        <div>
+                            <h5>Elena Rostova</h5>
+                            <span>CEO at NovaCorp SaaS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"The developer SDK is a masterpiece. We had production payments working in 20 minutes. Instant USDC settlement has solved all our international payout headache."</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Client">
+                        <div>
+                            <h5>Marcus Vance</h5>
+                            <span>CTO at Veloce AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"Fraud was eating 2% of our revenue until we plugged in PayZen's AI Sentinel. It stopped malicious chargebacks instantly while letting real customers through."</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" alt="Client">
+                        <div>
+                            <h5>Chloe Zhang</h5>
+                            <span>Head of Growth at OrbitPay</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <span class="badge">Got Questions?</span>
+                <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
+            </div>
+
+            <div class="faq-container" data-aos="fade-up">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How long does it take to integrate PayZen?</h4>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most developers integrate our React or Web SDK in under 30 minutes. For no-code platforms, we offer native plugins for Webflow, Shopify, and WordPress.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>When do I receive payouts from my sales?</h4>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>With our Growth Pro plan, payouts are instant (24/7/365) to your bank account or crypto wallet. Starter plans settle within 2 business days.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is PayZen compliant with PCI-DSS?</h4>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! PayZen is certified as a PCI-DSS Level 1 Service Provider. Since our checkout widgets handle sensitive card details directly, you never store raw card data on your servers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I accept cryptocurrency alongside fiat?</h4>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. You can accept USDC, USDT, and Bitcoin alongside traditional credit cards and Apple Pay, with instant auto-conversion to your preferred local currency if desired.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist / CTA Section -->
+    <section id="waitlist" class="cta-section">
+        <div class="container">
+            <div class="cta-box" data-aos="zoom-in">
+                <div class="cta-glow"></div>
+                <div class="cta-content">
+                    <h2>Ready to upgrade your checkout experience?</h2>
+                    <p>Join over 4,500 forward-thinking companies on the PayZen early access waitlist. Get free sandbox API keys instantly.</p>
+                    
+                    <form class="waitlist-form" id="waitlistForm">
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Enter your work email..." required id="waitlistEmail">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Request Access <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div class="waitlist-success" id="waitlistSuccess" style="display: none;">
+                        <i class="fa-solid fa-circle-check"></i> You're on the list! Check your inbox for API keys.
+                    </div>
+                    <div class="cta-meta">
+                        <span><i class="fa-solid fa-check"></i> No credit card required</span>
+                        <span><i class="fa-solid fa-check"></i> Instant sandbox keys</span>
+                        <span><i class="fa-solid fa-check"></i> Cancel anytime</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo">
+                        <div class="logo-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <span>Pay<span class="gradient-text">Zen</span></span>
+                    </a>
+                    <p>The next-generation financial infrastructure for global businesses and high-conversion checkouts.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#simulator">Interactive Demo</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Changelog</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Solutions</h4>
+                    <a href="#">SaaS Platforms</a>
+                    <a href="#">E-Commerce</a>
+                    <a href="#">Marketplaces</a>
+                    <a href="#">Creator Economy</a>
+                    <a href="#">Crypto Settlers</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers <span class="badge-mini">We're hiring</span></a>
+                    <a href="#">Press Kit</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 PayZen Technologies Inc. All rights reserved.</p>
+                <div class="footer-status">
+                    <span class="dot green"></span> All Systems Operational
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 80,
+            duration: 800
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

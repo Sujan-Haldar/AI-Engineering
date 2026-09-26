@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sujan Haldar — Software Engineer @ TCS | HealthTech & Claim Adjudication Expert</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        },
+                        dark: {
+                            900: '#090d16',
+                            800: '#0f172a',
+                            700: '#1e293b',
+                            600: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 dark:bg-dark-900 text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-white transition-colors duration-300">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                    SH
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-tight block">Sujan Haldar</span>
+                    <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">Software Engineer @ TCS</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors">About</a>
+                <a href="#experience" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors">TCS Experience</a>
+                <a href="#adjudication" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors">Claim Adjudication</a>
+                <a href="#skills" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors">Tech Stack</a>
+                <a href="#education" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors">Education</a>
+                <a href="#contact" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle -->
+                <button id="themeToggle" aria-label="Toggle Dark Mode" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-dark-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-yellow-400 hover:scale-105 transition-all">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:block"></i>
+                </button>
+                <!-- Resume Download Button -->
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm shadow-lg shadow-emerald-600/20 transition-all hover:scale-[1.02]">
+                    <i class="fa-solid fa-file-arrow-down"></i> Get Resume
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-dark-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 right-0 bg-white dark:bg-dark-800 border-b border-slate-200 dark:border-slate-700 p-6 shadow-2xl flex flex-col gap-4">
+            <a href="#about" class="mobile-link text-slate-700 dark:text-slate-200 font-medium py-2">About</a>
+            <a href="#experience" class="mobile-link text-slate-700 dark:text-slate-200 font-medium py-2">TCS Experience</a>
+            <a href="#adjudication" class="mobile-link text-slate-700 dark:text-slate-200 font-medium py-2">Claim Adjudication Engine</a>
+            <a href="#skills" class="mobile-link text-slate-700 dark:text-slate-200 font-medium py-2">Tech Stack</a>
+            <a href="#education" class="mobile-link text-slate-700 dark:text-slate-200 font-medium py-2">Education</a>
+            <a href="#contact" class="mobile-link text-slate-700 dark:text-slate-200 font-medium py-2">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 dark:bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium text-xs md:text-sm mb-6 animate-pulse">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        Software Engineer at Tata Consultancy Services (TCS)
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                        Hi, I'm <span class="bg-gradient-to-r from-emerald-600 to-teal-400 bg-clip-text text-transparent">Sujan Haldar</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                        Passionate Software Engineer specializing in the <strong class="text-slate-900 dark:text-white">Health Insurance Domain</strong>. Expert in automated <strong class="text-slate-900 dark:text-white">Claim Adjudication Rules</strong>, core backend engineering, and robust business requirement implementations.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                        <a href="#adjudication" class="px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-lg shadow-emerald-600/25 transition-all hover:scale-105 flex items-center gap-2">
+                            <span>Explore Claim Engine</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#contact" class="px-7 py-3.5 rounded-xl bg-slate-200 dark:bg-dark-800 hover:bg-slate-300 dark:hover:bg-dark-700 text-slate-800 dark:text-slate-200 font-semibold transition-all hover:scale-105">
+                            Let's Connect
+                        </a>
+                    </div>
+                    
+                    <!-- Quick Metrics -->
+                    <div class="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-slate-200 dark:border-slate-800 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl md:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">TCS</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Software Engineer</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">HealthTech</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Insurance Domain</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl md:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">MAKAUT</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">B.Tech CSE Grad</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual / Interactive Adjudication Preview Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-2xl bg-white dark:bg-dark-800 border border-slate-200/80 dark:border-slate-700/80 p-6 shadow-2xl shadow-emerald-500/10">
+                        <div class="absolute -top-3 -right-3 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-halved"></i> Active Adjudication
+                        </div>
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl font-bold">
+                                <i class="fa-solid fa-notes-medical"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white">Claim #CLM-892401</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Automated Health Insurance Processing</p>
+                            </div>
+                        </div>
+
+                        <!-- Mini Checklist items -->
+                        <div class="space-y-3 font-mono text-xs">
+                            <div class="p-3 rounded-lg bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                                <span class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                    <i class="fa-solid fa-circle-check text-emerald-500"></i> Benefit & Cover Check
+                                </span>
+                                <span class="text-emerald-600 dark:text-emerald-400 font-bold">PASSED</span>
+                            </div>
+                            <div class="p-3 rounded-lg bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                                <span class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                    <i class="fa-solid fa-circle-check text-emerald-500"></i> ICD-10 Limit Validation
+                                </span>
+                                <span class="text-emerald-600 dark:text-emerald-400 font-bold">VALIDATED</span>
+                            </div>
+                            <div class="p-3 rounded-lg bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                                <span class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                                    <i class="fa-solid fa-circle-check text-emerald-500"></i> Pre-Authorization Status
+                                </span>
+                                <span class="text-emerald-600 dark:text-emerald-400 font-bold">VERIFIED</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                            <span class="text-xs text-slate-500">Decision Outcome:</span>
+                            <span class="px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold text-xs uppercase tracking-wider">
+                                Claim Approved
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-100/50 dark:bg-dark-800/50 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold text-sm uppercase tracking-wider">Professional Profile</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-4">Engineering Scalable HealthTech Solutions</h2>
+                <p class="text-slate-600 dark:text-slate-300">Dedicated software professional with strong academic roots in Computer Science, currently transforming health insurance operations at TCS.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white dark:bg-dark-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none hover:-translate-y-1 transition-transform">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">TCS Software Engineer</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        Working with Tata Consultancy Services, building and maintaining enterprise-grade applications with rigorous adherence to quality, business requirements, and performance standards.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white dark:bg-dark-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none hover:-translate-y-1 transition-transform">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Health Insurance Expert</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        Deep functional and technical expertise in the Healthcare Insurance domain, specifically managing complex claim lifecycles, benefit structures, and medical coding limits.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white dark:bg-dark-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none hover:-translate-y-1 transition-transform">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">MAKAUT CSE Graduate</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        Graduated with a Bachelor of Technology in Computer Science & Engineering from Maulana Abul Kalam Azad University of Technology, building robust analytical and programming foundations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TCS Experience & User Stories Section -->
+    <section id="experience" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5">
+                    <span class="text-emerald-600 dark:text-emerald-400 font-semibold text-sm uppercase tracking-wider">TCS Career Journey</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-6">Translating Business Stories into Production Code</h2>
+                    <p class="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                        As a software engineer at TCS, my day-to-day work involves bridging the gap between healthcare insurance stakeholders and robust technical execution. I take ownership of user stories from inception to deployment.
+                    </p>
+                    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                            <span>Analyzing complex business requirements and drafting technical specifications.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                            <span>Developing modular user stories for seamless claim processing workflows.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-1"></i>
+                            <span>Collaborating in Agile sprints with cross-functional global teams.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-white dark:bg-dark-800 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl space-y-6">
+                        <div class="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-slate-700">
+                            <div>
+                                <h4 class="font-bold text-lg text-slate-900 dark:text-white">User Story Lifecycle at TCS</h4>
+                                <p class="text-xs text-slate-500">Agile Sprint Workflow</p>
+                            </div>
+                            <span class="px-3 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg text-xs font-bold">Active Sprint</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">1</div>
+                                <div>
+                                    <h5 class="font-bold text-sm">Requirement Analysis</h5>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Deconstructing health insurance policy updates and compliance mandates into actionable backlog items.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">2</div>
+                                <div>
+                                    <h5 class="font-bold text-sm">User Story Implementation</h5>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Writing clean backend logic, configuring database mappings, and ensuring adherence to enterprise coding standards.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">3</div>
+                                <div>
+                                    <h5 class="font-bold text-sm">Rigorous Testing & Delivery</h5>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Unit testing, edge case simulation for healthcare claims, and seamless deployment into staging/production.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Expertise: Claim Adjudication Section (Highlighted) -->
+    <section id="adjudication" class="py-24 bg-slate-100/50 dark:bg-dark-800/50 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold text-sm uppercase tracking-wider">Core Domain Expertise</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-4">Claim Adjudication & Rules Engine</h2>
+                <p class="text-slate-600 dark:text-slate-300">I specialize in designing and developing automated adjudication logic that evaluates medical claims with 100% precision.</p>
+            </div>
+
+            <!-- Adjudication Flow Diagram / Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <!-- Check 1 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg relative group hover:border-emerald-500 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Benefit & Cover Check</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Verifies whether the submitted medical procedure or service is actively covered under the insured member's specific policy plan.
+                    </p>
+                </div>
+
+                <!-- Check 2 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg relative group hover:border-emerald-500 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Category Validation</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Classifies and verifies service categories (Inpatient, Outpatient, Dental, Vision, Pharmacy) to apply appropriate fee schedules.
+                    </p>
+                </div>
+
+                <!-- Check 3 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg relative group hover:border-emerald-500 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">ICD Limit & Diagnosis</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Checks International Classification of Diseases (ICD) codes against policy limits, frequency restrictions, and medical necessity guidelines.
+                    </p>
+                </div>
+
+                <!-- Check 4 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg relative group hover:border-emerald-500 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-file-shield"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Pre-Authorization</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Validates pre-approval status for specialized medical treatments, surgeries, and high-cost procedures prior to claim settlement.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Adjudication Simulator Sandbox -->
+            <div class="bg-white dark:bg-dark-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 md:p-10 shadow-2xl">
+                <div class="max-w-2xl mx-auto text-center mb-8">
+                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold text-xs">Interactive Demo</span>
+                    <h3 class="text-2xl font-bold mt-2">Claim Adjudication Rules Sandbox</h3>
+                    <p class="text-sm text-slate-500 mt-1">Test how the automated adjudication rule evaluates sample health insurance claims.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Controls -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Select Sample Claim Scenario:</label>
+                            <select id="claimScenario" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500">
+                                <option value="valid">Scenario A: Routine Surgery (All Checks Pass)</option>
+                                <option value="icd_fail">Scenario B: Exceeded ICD-10 Limit</option>
+                                <option value="auth_fail">Scenario C: Missing Pre-Authorization</option>
+                                <option value="benefit_fail">Scenario D: Service Not Covered Under Policy</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Claim Amount ($):</label>
+                                <input type="text" id="claimAmount" readonly value="$4,500.00" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 text-sm font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">ICD-10 Code:</label>
+                                <input type="text" id="icdCode" readonly value="Z47.1 (Orthopedic)" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 text-sm font-mono">
+                            </div>
+                        </div>
+
+                        <button id="runAdjudicationBtn" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-emerald-600/25 transition-all">
+                            <i class="fa-solid fa-play mr-2"></i> Run Adjudication Rules Engine
+                        </button>
+                    </div>
+
+                    <!-- Output Console -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-slate-900 text-slate-200 p-6 rounded-2xl font-mono text-xs shadow-inner border border-slate-800">
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800 text-slate-400">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                                    <span class="ml-2">adjudication_engine.log</span>
+                                </span>
+                                <span id="engineStatus" class="text-emerald-400 font-bold">READY</span>
+                            </div>
+                            <div id="consoleOutput" class="space-y-2 min-h-[160px] max-h-[200px] overflow-y-auto">
+                                <p class="text-slate-500">// Select a scenario and click 'Run Adjudication Rules Engine' to test rules logic...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Tech Stack Section -->
+    <section id="skills" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold text-sm uppercase tracking-wider">Technical Proficiency</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-4">Tech Stack & Tools</h2>
+                <p class="text-slate-600 dark:text-slate-300">Modern technologies and tools I utilize to build scalable software and business logic.</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Skill 1 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:scale-105 transition-transform shadow-lg shadow-slate-200/50 dark:shadow-none">
+                    <i class="fa-brands fa-java text-4xl text-orange-500 mb-3"></i>
+                    <h4 class="font-bold text-sm">Java / J2EE</h4>
+                    <span class="text-xs text-slate-400">Backend Core</span>
+                </div>
+                <!-- Skill 2 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:scale-105 transition-transform shadow-lg shadow-slate-200/50 dark:shadow-none">
+                    <i class="fa-solid fa-database text-4xl text-blue-500 mb-3"></i>
+                    <h4 class="font-bold text-sm">SQL / Databases</h4>
+                    <span class="text-xs text-slate-400">Data Management</span>
+                </div>
+                <!-- Skill 3 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:scale-105 transition-transform shadow-lg shadow-slate-200/50 dark:shadow-none">
+                    <i class="fa-brands fa-js text-4xl text-yellow-400 mb-3"></i>
+                    <h4 class="font-bold text-sm">JavaScript</h4>
+                    <span class="text-xs text-slate-400">Frontend / Scripting</span>
+                </div>
+                <!-- Skill 4 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:scale-105 transition-transform shadow-lg shadow-slate-200/50 dark:shadow-none">
+                    <i class="fa-solid fa-gears text-4xl text-emerald-500 mb-3"></i>
+                    <h4 class="font-bold text-sm">Rules Engine</h4>
+                    <span class="text-xs text-slate-400">Claim Adjudication</span>
+                </div>
+                <!-- Skill 5 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:scale-105 transition-transform shadow-lg shadow-slate-200/50 dark:shadow-none">
+                    <i class="fa-solid fa-code-branch text-4xl text-purple-500 mb-3"></i>
+                    <h4 class="font-bold text-sm">Git & GitHub</h4>
+                    <span class="text-xs text-slate-400">Version Control</span>
+                </div>
+                <!-- Skill 6 -->
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 text-center hover:scale-105 transition-transform shadow-lg shadow-slate-200/50 dark:shadow-none">
+                    <i class="fa-solid fa-file-code text-4xl text-cyan-500 mb-3"></i>
+                    <h4 class="font-bold text-sm">HTML5 / CSS3</h4>
+                    <span class="text-xs text-slate-400">Web Standards</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 bg-slate-100/50 dark:bg-dark-800/50 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold text-sm uppercase tracking-wider">Academic Background</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-4">Education</h2>
+                <p class="text-slate-600 dark:text-slate-300">Foundation in computer science and engineering principles.</p>
+            </div>
+
+            <div class="bg-white dark:bg-dark-800 p-8 md:p-10 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl flex flex-col md:flex-row items-center gap-8">
+                <div class="w-20 h-20 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-3xl shrink-0">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <div class="flex-1 text-center md:text-left">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                        <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">B.Tech in Computer Science & Engineering</h3>
+                        <span class="px-3 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg text-xs font-bold w-fit mx-auto md:mx-0 mt-2 md:mt-0">Graduated</span>
+                    </div>
+                    <p class="text-emerald-600 dark:text-emerald-400 font-medium mb-3">Maulana Abul Kalam Azad University of Technology (MAKAUT)</p>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        Comprehensive curriculum covering Data Structures, Algorithms, Object-Oriented Programming, Database Management Systems, and Software Engineering methodologies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6">
+                    <span class="text-emerald-600 dark:text-emerald-400 font-semibold text-sm uppercase tracking-wider">Get in Touch</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-2 mb-4">Let's Connect & Collaborate</h2>
+                    <p class="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+                        Whether you want to discuss health insurance tech solutions, claim adjudication architectures, or potential career opportunities, my inbox is always open.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-dark-800 border border-slate-200 dark:border-slate-700 shadow-md">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg font-bold">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xs text-slate-400 font-bold uppercase tracking-wider">Email Me</h5>
+                                <a href="mailto:sujanhaldar.eng@gmail.com" class="font-bold text-slate-800 dark:text-slate-200 hover:text-emerald-500 transition-colors">sujanhaldar.eng@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-dark-800 border border-slate-200 dark:border-slate-700 shadow-md">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg font-bold">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xs text-slate-400 font-bold uppercase tracking-wider">Location</h5>
+                                <span class="font-bold text-slate-800 dark:text-slate-200">India (Working at TCS)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-dark-800 border border-slate-200 dark:border-slate-700 shadow-md">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg font-bold">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xs text-slate-400 font-bold uppercase tracking-wider">LinkedIn Profile</h5>
+                                <a href="https://linkedin.com" target="_blank" class="font-bold text-slate-800 dark:text-slate-200 hover:text-emerald-500 transition-colors">Connect on LinkedIn <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-6">
+                    <div class="bg-white dark:bg-dark-800 p-8 md:p-10 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+                        <form id="contactForm" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Your Name</label>
+                                <input type="text" id="senderName" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Your Email</label>
+                                <input type="email" id="senderEmail" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Message</label>
+                                <textarea id="senderMessage" rows="4" required placeholder="Let's discuss an opportunity..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-dark-900 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-emerald-600/25 transition-all hover:scale-[1.01]">
+                                Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                        <div id="formSuccess" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-sm font-medium text-center">
+                            <i class="fa-solid fa-circle-check mr-2"></i> Thank you! Your message has been sent successfully.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white dark:bg-dark-900 border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; <span id="currentYear"></span> Sujan Haldar. Software Engineer @ TCS. All rights reserved.</p>
+            <div class="flex items-center gap-6">
+                <a href="#home" class="hover:text-emerald-500 transition-colors">Home</a>
+                <a href="#experience" class="hover:text-emerald-500 transition-colors">TCS</a>
+                <a href="#adjudication" class="hover:text-emerald-500 transition-colors">Claim Adjudication</a>
+                <a href="#contact" class="hover:text-emerald-500 transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
