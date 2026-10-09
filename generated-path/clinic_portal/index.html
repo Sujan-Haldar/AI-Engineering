@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Plus+ | Advanced Clinic & Healthcare Management Suite</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js for Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eefcf6',
+                            100: '#d5f7eb',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        medical: {
+                            light: '#f0fdf4',
+                            DEFAULT: '#22c55e',
+                            dark: '#15803d',
+                            blue: '#0284c7',
+                            slate: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Emergency Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-phone-volume text-brand-500 animate-pulse"></i> Emergency Helpline: <strong class="text-white">+1 (800) 456-7890</strong></span>
+                <span class="hidden md:inline-flex items-center gap-2"><i class="fa-solid fa-clock text-brand-500"></i> 24/7 Urgent Care & Pharmacy Available</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="bg-red-500/20 text-red-400 px-2 py-0.5 rounded font-medium border border-red-500/30">ER Status: Open (Wait time: ~12 mins)</span>
+                <div class="flex items-center gap-2">
+                    <button onclick="switchRole('patient')" id="switch-patient-btn" class="text-xs px-2.5 py-1 rounded bg-brand-600 text-white font-medium transition hover:bg-brand-700">Patient Portal</button>
+                    <button onclick="switchRole('staff')" id="switch-staff-btn" class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-medium transition hover:bg-slate-700">Staff / Admin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-stethoscope text-2xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-900">MediCare <span class="text-brand-600">Plus+</span></span>
+                    <span class="block text-[11px] font-semibold text-slate-400 uppercase tracking-widest">Advanced Clinic & Pharmacy</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-1 font-medium text-sm">
+                <button onclick="showSection('home')" class="nav-link px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition active">Home</button>
+                <button onclick="showSection('doctors')" class="nav-link px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition">Find Doctors</button>
+                <button onclick="showSection('booking')" class="nav-link px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition flex items-center gap-1.5">
+                    <i class="fa-regular fa-calendar-check text-brand-600"></i> Book Appointment
+                </button>
+                <button onclick="showSection('services')" class="nav-link px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition">Departments</button>
+                <button onclick="showSection('pharmacy')" class="nav-link px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-pills text-brand-600"></i> E-Pharmacy <span class="bg-brand-100 text-brand-800 text-[10px] px-1.5 py-0.5 rounded-full font-bold">New</span>
+                </button>
+                <button onclick="showSection('records')" class="nav-link px-4 py-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition">My Records</button>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="openSymptomChecker()" class="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold text-sm transition">
+                    <i class="fa-solid fa-robot text-brand-600"></i> AI Symptom AI
+                </button>
+                <button onclick="showSection('booking')" class="bg-gradient-to-r from-brand-600 to-emerald-500 hover:from-brand-700 hover:to-emerald-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/20 text-sm transition transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-calendar-plus mr-1.5"></i> Book Visit
+                </button>
+                <!-- Mobile menu toggle -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="showSection('home'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Home</button>
+            <button onclick="showSection('doctors'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Find Doctors</button>
+            <button onclick="showSection('booking'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Book Appointment</button>
+            <button onclick="showSection('services'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Departments</button>
+            <button onclick="showSection('pharmacy'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">E-Pharmacy Inventory</button>
+            <button onclick="showSection('records'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">My Records</button>
+            <button onclick="openSymptomChecker(); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg font-medium text-brand-700 bg-brand-50">AI Symptom Checker</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main>
+
+        <!-- ================= SECTION: HOME ================= -->
+        <section id="section-home" class="page-section">
+            <!-- Hero Section -->
+            <div class="relative overflow-hidden bg-gradient-to-b from-brand-50/60 via-white to-slate-50 pt-12 pb-20 lg:pt-20 lg:pb-32">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-200/50 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute top-60 -left-40 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center gap-2 bg-brand-100 text-brand-800 px-4 py-2 rounded-full text-sm font-semibold border border-brand-200/60 shadow-sm">
+                                <span class="flex h-2 w-2 rounded-full bg-brand-600 animate-ping"></span>
+                                Top Rated Multi-Specialty Clinic & Digital Pharmacy
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+                                Your Health, <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-emerald-500">Our Priority</span> Care.
+                            </h1>
+                            <p class="text-lg text-slate-600 max-w-2xl leading-relaxed">
+                                Experience world-class healthcare with instant doctor bookings, live queue tracking, digital prescriptions, and an automated smart medicine inventory system.
+                            </p>
+
+                            <!-- Quick Search Bar -->
+                            <div class="bg-white p-3 rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-200 max-w-xl">
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <div class="flex items-center gap-2.5 px-3 py-2 bg-slate-50 rounded-xl border border-slate-100">
+                                        <i class="fa-solid fa-stethoscope text-brand-600"></i>
+                                        <select id="hero-specialty" class="w-full bg-transparent text-sm text-slate-700 font-medium focus:outline-none cursor-pointer">
+                                            <option value="">Specialty...</option>
+                                            <option value="Cardiology">Cardiology</option>
+                                            <option value="Neurology">Neurology</option>
+                                            <option value="Pediatrics">Pediatrics</option>
+                                            <option value="Dermatology">Dermatology</option>
+                                            <option value="Orthopedics">Orthopedics</option>
+                                            <option value="General">General Physician</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex items-center gap-2.5 px-3 py-2 bg-slate-50 rounded-xl border border-slate-100">
+                                        <i class="fa-solid fa-location-dot text-brand-600"></i>
+                                        <select id="hero-location" class="w-full bg-transparent text-sm text-slate-700 font-medium focus:outline-none cursor-pointer">
+                                            <option value="">Location...</option>
+                                            <option value="Main Branch - Downtown">Main Branch - Downtown</option>
+                                            <option value="Westside Medical Hub">Westside Medical Hub</option>
+                                            <option value="North Valley Clinic">North Valley Clinic</option>
+                                        </select>
+                                    </div>
+                                    <button onclick="handleHeroSearch()" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm">
+                                        <i class="fa-solid fa-magnifying-glass"></i> Find Doctor
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Trust Badges -->
+                            <div class="pt-4 flex flex-wrap items-center gap-8 text-slate-500 text-sm font-medium border-t border-slate-200/80">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-user-doctor text-brand-600 text-lg"></i>
+                                    <span><strong>45+</strong> Expert Doctors</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-hospital-user text-brand-600 text-lg"></i>
+                                    <span><strong>25,000+</strong> Happy Patients</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-star text-amber-400 text-lg"></i>
+                                    <span><strong>4.9/5</strong> Rating</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Image / Interactive Card -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="relative mx-auto max-w-md lg:max-w-none">
+                                <div class="bg-gradient-to-tr from-brand-500 to-emerald-300 rounded-3xl p-2 shadow-2xl shadow-brand-500/20">
+                                    <div class="bg-white rounded-[22px] p-6 space-y-6">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-3">
+                                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=150" alt="Doctor" class="w-14 h-14 rounded-2xl object-cover shadow-md">
+                                                <div>
+                                                    <h4 class="font-bold text-slate-900">Dr. Sarah Jenkins</h4>
+                                                    <p class="text-xs text-brand-600 font-semibold">Chief Cardiologist (MD, FACC)</p>
+                                                </div>
+                                            </div>
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+                                                <span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Available Today
+                                            </span>
+                                        </div>
+
+                                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3">
+                                            <div class="flex justify-between text-xs font-semibold text-slate-500">
+                                                <span>Next Available Slot</span>
+                                                <span class="text-brand-600">Today, 03:30 PM</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <div class="flex-1 bg-slate-200 h-2 rounded-full overflow-hidden">
+                                                    <div class="bg-brand-500 h-full w-3/4 rounded-full"></div>
+                                                </div>
+                                                <span class="text-xs font-bold text-slate-700">75% Booked</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <button onclick="quickBookDoctor('Dr. Sarah Jenkins', 'Cardiology')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition shadow-md shadow-brand-500/20">
+                                                Book Consultation
+                                            </button>
+                                            <button onclick="showSection('doctors')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 px-4 rounded-xl text-sm transition">
+                                                View Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Badge -->
+                                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce-slow">
+                                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-shield-heart text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-slate-400 font-semibold">100% Secure</div>
+                                        <div class="text-sm font-bold text-slate-800">HIPAA Compliant</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Service Cards -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 pb-16">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div onclick="showSection('booking')" class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:border-brand-500 transition group cursor-pointer">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">Book Appointment</h3>
+                        <p class="text-xs text-slate-500 mb-3">Schedule in-clinic visits or live telehealth video calls with specialists.</p>
+                        <span class="text-xs font-bold text-brand-600 flex items-center gap-1 group-hover:translate-x-1 transition">Book now <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+
+                    <div onclick="openSymptomChecker()" class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:border-brand-500 transition group cursor-pointer">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4 group-hover:bg-sky-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">AI Symptom Checker</h3>
+                        <p class="text-xs text-slate-500 mb-3">Describe your symptoms and get instant triage guidance & department match.</p>
+                        <span class="text-xs font-bold text-sky-600 flex items-center gap-1 group-hover:translate-x-1 transition">Check symptoms <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+
+                    <div onclick="showSection('pharmacy')" class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:border-brand-500 transition group cursor-pointer">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-pills"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">E-Pharmacy & Inventory</h3>
+                        <p class="text-xs text-slate-500 mb-3">Search medicine stock, check live pricing, upload prescriptions & order refills.</p>
+                        <span class="text-xs font-bold text-emerald-600 flex items-center gap-1 group-hover:translate-x-1 transition">Browse meds <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+
+                    <div onclick="showSection('records')" class="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:border-brand-500 transition group cursor-pointer">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl mb-4 group-hover:bg-indigo-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-file-medical"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 mb-1">Medical Records</h3>
+                        <p class="text-xs text-slate-500 mb-3">Access past prescriptions, lab test reports, and billing history securely.</p>
+                        <span class="text-xs font-bold text-indigo-600 flex items-center gap-1 group-hover:translate-x-1 transition">View records <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Doctors Preview -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+                    <div>
+                        <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">Meet Our Specialists</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Top-Rated Medical Experts</h2>
+                    </div>
+                    <button onclick="showSection('doctors')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-5 py-2.5 rounded-xl text-sm transition">
+                        View All Doctors <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+
+                <div id="home-doctors-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Live Inventory Spotlight / Pharmacy Preview -->
+            <div class="bg-slate-900 text-white py-16 my-12 relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.15),transparent_50%)]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Smart Inventory System</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 mb-4">Real-Time Medicine Stock & Automated Dispensing</h2>
+                            <p class="text-slate-300 text-base leading-relaxed mb-6">
+                                Never run out of essential medications. Our integrated pharmacy module tracks batch numbers, expiration dates, low-stock alerts, and auto-generates refill lists based on doctor prescriptions.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                                    <div class="text-2xl font-black text-brand-400 mb-1" id="stat-total-meds">1,420+</div>
+                                    <div class="text-xs text-slate-400">Medicines in Stock</div>
+                                </div>
+                                <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                                    <div class="text-2xl font-black text-emerald-400 mb-1">99.8%</div>
+                                    <div class="text-xs text-slate-400">Stock Accuracy Rate</div>
+                                </div>
+                            </div>
+                            <button onclick="showSection('pharmacy')" class="bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold px-6 py-3 rounded-xl transition shadow-lg shadow-brand-500/20">
+                                <i class="fa-solid fa-pills mr-2"></i> Open Pharmacy & Inventory Dashboard
+                            </button>
+                        </div>
+
+                        <!-- Mini Inventory Table Preview -->
+                        <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-2xl">
+                            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-700">
+                                <h3 class="font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-box-archive text-brand-400"></i> Live Stock Monitor
+                                </h3>
+                                <span class="bg-brand-500/20 text-brand-400 text-xs px-2.5 py-1 rounded-full font-semibold border border-brand-500/30">Auto-Synced</span>
+                            </div>
+                            <div class="space-y-3" id="home-inventory-preview">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION: DOCTORS ================= -->
+        <section id="section-doctors" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">Our Specialists</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Find & Consult Expert Doctors</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Filter by specialty, location, or consultation fee to find the right doctor for your needs.</p>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-1">
+                        <div class="relative flex-1">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
+                            <input type="text" id="doctor-search" placeholder="Search doctor name..." oninput="filterDoctors()" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div class="w-full sm:w-48">
+                            <select id="doctor-filter-specialty" onchange="filterDoctors()" class="w-full py-2.5 px-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-700 font-medium focus:outline-none focus:border-brand-500 cursor-pointer">
+                                <option value="">All Specialties</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="General Physician">General Physician</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                        <span class="text-xs text-slate-500 font-medium" id="doctor-count">Showing 6 doctors</span>
+                    </div>
+                </div>
+
+                <!-- Doctors Grid -->
+                <div id="doctors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION: BOOKING ================= -->
+        <section id="section-booking" class="page-section hidden py-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">Easy Scheduling</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Book Your Appointment</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Select your preferred doctor, date, time slot, and consultation type.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-brand-600 to-emerald-500 p-6 text-white">
+                        <h3 class="text-xl font-bold flex items-center gap-2">
+                            <i class="fa-regular fa-calendar-days"></i> Appointment Booking Portal
+                        </h3>
+                        <p class="text-xs text-brand-100 mt-1">Instant confirmation with SMS & Email reminders</p>
+                    </div>
+
+                    <form id="appointment-form" onsubmit="submitAppointment(event)" class="p-8 space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Select Doctor *</label>
+                                <select id="booking-doctor" required class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm font-medium text-slate-800 focus:outline-none focus:border-brand-500">
+                                    <option value="">-- Choose Doctor --</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Consultation Type *</label>
+                                <select id="booking-type" required class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm font-medium text-slate-800 focus:outline-none focus:border-brand-500">
+                                    <option value="In-Clinic Visit">In-Clinic Visit</option>
+                                    <option value="Video Telehealth">Video Telehealth Consultation</option>
+                                    <option value="Home Visit">Home Nursing / Visit</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Appointment Date *</label>
+                                <input type="date" id="booking-date" required class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm font-medium text-slate-800 focus:outline-none focus:border-brand-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Preferred Time Slot *</label>
+                                <select id="booking-time" required class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm font-medium text-slate-800 focus:outline-none focus:border-brand-500">
+                                    <option value="">-- Select Time Slot --</option>
+                                    <option value="09:00 AM - 09:30 AM">09:00 AM - 09:30 AM</option>
+                                    <option value="10:00 AM - 10:30 AM">10:00 AM - 10:30 AM</option>
+                                    <option value="11:15 AM - 11:45 AM">11:15 AM - 11:45 AM</option>
+                                    <option value="02:00 PM - 02:30 PM">02:00 PM - 02:30 PM</option>
+                                    <option value="03:30 PM - 04:00 PM">03:30 PM - 04:00 PM</option>
+                                    <option value="05:00 PM - 05:30 PM">05:00 PM - 05:30 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-100 pt-6">
+                            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Patient Information</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Full Name *</label>
+                                    <input type="text" id="patient-name" placeholder="John Doe" required class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Phone Number *</label>
+                                    <input type="tel" id="patient-phone" placeholder="+1 (555) 019-2834" required class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Email Address *</label>
+                                    <input type="email" id="patient-email" placeholder="john@example.com" required class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Age & Gender</label>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <input type="number" id="patient-age" placeholder="Age" class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                                        <select id="patient-gender" class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Reason for Visit / Symptoms</label>
+                                <textarea id="patient-reason" rows="3" placeholder="Briefly describe your symptoms or reason for consultation..." class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex items-center justify-end gap-4">
+                            <button type="button" onclick="showSection('home')" class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 transition">Cancel</button>
+                            <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-brand-500/30 text-sm transition flex items-center gap-2">
+                                <i class="fa-solid fa-check"></i> Confirm Appointment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION: SERVICES / DEPARTMENTS ================= -->
+        <section id="section-services" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">Medical Departments</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Comprehensive Healthcare Services</h2>
+                    <p class="text-slate-500 mt-2 text-sm">State-of-the-art clinics equipped with advanced diagnostic tools and leading specialists.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="departments-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION: PHARMACY / INVENTORY ================= -->
+        <section id="section-pharmacy" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                    <div>
+                        <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">Digital E-Pharmacy</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Medicine Inventory & Dispensary</h2>
+                        <p class="text-slate-500 mt-1 text-sm">Real-time stock tracking, dosage information, prescription uploads, and fast home delivery.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="openCartModal()" class="relative bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-md">
+                            <i class="fa-solid fa-cart-shopping"></i> Cart <span id="cart-badge" class="bg-brand-500 text-slate-950 px-2 py-0.5 rounded-full text-xs font-extrabold">0</span>
+                        </button>
+                        <button onclick="openAddMedicineModal()" id="staff-add-med-btn" class="hidden bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Add New Medicine
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pharmacy Search & Categories -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-8 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                    <div class="relative w-full sm:w-96">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
+                        <input type="text" id="pharmacy-search" placeholder="Search medicine name, salt..." oninput="filterInventory()" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0">
+                        <button onclick="filterCategory('All')" class="category-btn px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white transition whitespace-nowrap">All Items</button>
+                        <button onclick="filterCategory('Antibiotics')" class="category-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition whitespace-nowrap">Antibiotics</button>
+                        <button onclick="filterCategory('Pain Relief')" class="category-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition whitespace-nowrap">Pain Relief</button>
+                        <button onclick="filterCategory('Cardiovascular')" class="category-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition whitespace-nowrap">Cardiovascular</button>
+                        <button onclick="filterCategory('Vitamins')" class="category-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition whitespace-nowrap">Vitamins</button>
+                    </div>
+                </div>
+
+                <!-- Inventory Grid -->
+                <div id="inventory-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION: MY RECORDS & QUEUE ================= -->
+        <section id="section-records" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">Patient Dashboard</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">My Appointments & Medical Records</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Track your live queue position, review past doctor visits, and download prescriptions.</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex justify-center gap-3 mb-8">
+                    <button onclick="switchRecordTab('appointments')" id="tab-btn-appointments" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-brand-600 text-white shadow-md transition">My Appointments (<span id="count-my-appts">0</span>)</button>
+                    <button onclick="switchRecordTab('prescriptions')" id="tab-btn-prescriptions" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Digital Prescriptions</button>
+                    <button onclick="switchRecordTab('billing')" id="tab-btn-billing" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Billing & Invoices</button>
+                </div>
+
+                <!-- Tab 1: Appointments & Queue -->
+                <div id="tab-content-appointments" class="space-y-6">
+                    <div id="my-appointments-list" class="space-y-4">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab 2: Prescriptions -->
+                <div id="tab-content-prescriptions" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="my-prescriptions-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Tab 3: Billing -->
+                <div id="tab-content-billing" class="hidden space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                                    <th class="p-4">Invoice ID</th>
+                                    <th class="p-4">Service / Item</th>
+                                    <th class="p-4">Date</th>
+                                    <th class="p-4">Amount</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="billing-table-body" class="divide-y divide-slate-100 text-sm">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION: STAFF ADMIN DASHBOARD ================= -->
+        <section id="section-admin" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                    <div>
+                        <span class="text-amber-600 font-bold text-sm tracking-wider uppercase">Staff & Admin Control Center</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Clinic Management Dashboard</h2>
+                        <p class="text-slate-500 mt-1 text-sm">Monitor clinic appointments, manage queue status, and oversee pharmacy inventory levels.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="switchRole('patient')" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2.5 rounded-xl text-sm font-semibold transition">
+                            Switch to Patient View
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Admin Stats Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-calendar-check"></i></span>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">+12% today</span>
+                        </div>
+                        <div class="text-2xl font-black text-slate-900" id="admin-stat-appts">0</div>
+                        <div class="text-xs text-slate-500 font-medium">Total Appointments</div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-pills"></i></span>
+                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">Active</span>
+                        </div>
+                        <div class="text-2xl font-black text-slate-900" id="admin-stat-meds">0</div>
+                        <div class="text-xs text-slate-500 font-medium">Inventory Items</div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                            <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full">Attention</span>
+                        </div>
+                        <div class="text-2xl font-black text-slate-900" id="admin-stat-lowstock">0</div>
+                        <div class="text-xs text-slate-500 font-medium">Low Stock Alerts</div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Paid</span>
+                        </div>
+                        <div class="text-2xl font-black text-slate-900" id="admin-stat-revenue">$14,850</div>
+                        <div class="text-xs text-slate-500 font-medium">Monthly Revenue</div>
+                    </div>
+                </div>
+
+                <!-- Admin Appointments Management Table -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8">
+                    <div class="p-6 border-b border-slate-200 flex justify-between items-center">
+                        <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-clipboard-list text-brand-600"></i> Manage Appointments & Queue Status
+                        </h3>
+                        <span class="text-xs text-slate-500">Real-time update</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                                    <th class="p-4">Patient Name</th>
+                                    <th class="p-4">Doctor</th>
+                                    <th class="p-4">Type</th>
+                                    <th class="p-4">Date & Time</th>
+                                    <th class="p-4">Queue Status</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-appointments-table" class="divide-y divide-slate-100 text-sm">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+                        <span class="text-xl font-extrabold text-white tracking-tight">MediCare <span class="text-brand-500">Plus+</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+                        Leading multi-specialty clinic and digital health ecosystem offering seamless appointment bookings, live queue management, and automated pharmacy inventory.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center text-slate-300 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center text-slate-300 transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center text-slate-300 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center text-slate-300 transition"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" onclick="showSection('home')" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" onclick="showSection('doctors')" class="hover:text-white transition">Find Doctors</a></li>
+                        <li><a href="#" onclick="showSection('booking')" class="hover:text-white transition">Book Appointment</a></li>
+                        <li><a href="#" onclick="showSection('services')" class="hover:text-white transition">Departments</a></li>
+                        <li><a href="#" onclick="showSection('pharmacy')" class="hover:text-white transition">E-Pharmacy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Specialties</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" onclick="showSection('doctors')" class="hover:text-white transition">Cardiology</a></li>
+                        <li><a href="#" onclick="showSection('doctors')" class="hover:text-white transition">Neurology</a></li>
+                        <li><a href="#" onclick="showSection('doctors')" class="hover:text-white transition">Pediatrics</a></li>
+                        <li><a href="#" onclick="showSection('doctors')" class="hover:text-white transition">Dermatology</a></li>
+                        <li><a href="#" onclick="showSection('doctors')" class="hover:text-white transition">Orthopedics</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Contact & Hours</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot text-brand-500 mt-1"></i> 742 Evergreen Terrace, Medical District, NY</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-500"></i> +1 (800) 456-7890</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-500"></i> support@medicareplus.com</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-500"></i> Mon - Sun: 24/7 Open</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2025 MediCare Plus+ Clinic & Hospital Management Suite. All rights reserved.</p>
+                <div class="flex gap-4 mt-4 sm:mt-0">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Service</a>
+                    <a href="#" class="hover:underline">HIPAA Compliance</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- AI Symptom Checker Modal -->
+    <div id="modal-symptom" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 relative animate-scale-up">
+            <button onclick="closeSymptomChecker()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-extrabold text-slate-900">AI Symptom Triage</h3>
+                    <p class="text-xs text-slate-500">Instant AI recommendation & department match</p>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Describe your symptoms or health concern:</label>
+                    <textarea id="symptom-input" rows="4" placeholder="e.g., Persistent chest tightness, shortness of breath, dizziness when standing up..." class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500"></textarea>
+                </div>
+                <button onclick="runAiAnalysis()" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-sky-500/20 text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Symptoms
+                </button>
+                <div id="ai-result-box" class="hidden bg-sky-50 p-4 rounded-2xl border border-sky-200 space-y-2">
+                    <h4 class="font-bold text-sky-900 text-sm flex items-center gap-2"><i class="fa-solid fa-circle-check text-sky-600"></i> AI Assessment Result:</h4>
+                    <p id="ai-result-text" class="text-xs text-sky-800 leading-relaxed"></p>
+                    <button id="ai-book-btn" onclick="" class="mt-2 w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2 rounded-xl text-xs transition">
+                        Book Consultation with Recommended Specialist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- E-Pharmacy Cart Modal -->
+    <div id="modal-cart" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-slate-100 relative">
+            <button onclick="closeCartModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Your E-Pharmacy Cart</h3>
+                    <p class="text-xs text-slate-500">Review selected medicines & prescription requirements</p>
+                </div>
+            </div>
+            
+            <div id="cart-items-container" class="space-y-3 max-h-60 overflow-y-auto mb-4 pr-2">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 mb-6">
+                <div class="flex justify-between text-sm text-slate-600">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal" class="font-semibold">$0.00</span>
+                </div>
+                <div class="flex justify-between text-sm text-slate-600">
+                    <span>Express Home Delivery</span>
+                    <span class="font-semibold text-brand-600">Free</span>
+                </div>
+                <div class="border-t border-slate-200 pt-2 flex justify-between text-base font-extrabold text-slate-900">
+                    <span>Total Amount</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button onclick="closeCartModal()" class="flex-1 py-3 rounded-xl border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 transition">Continue Shopping</button>
+                <button onclick="checkoutCart()" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-brand-500/30 text-sm transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock"></i> Secure Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Medicine Modal (Staff Only) -->
+    <div id="modal-add-med" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 relative">
+            <button onclick="closeAddMedicineModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-extrabold text-slate-900 mb-1">Add New Medicine to Inventory</h3>
+            <p class="text-xs text-slate-500 mb-6">Staff inventory management control</p>
+            
+            <form id="add-medicine-form" onsubmit="submitNewMedicine(event)" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Medicine Name *</label>
+                        <input type="text" id="new-med-name" required placeholder="e.g., Amoxicillin 500mg" class="w-full p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Category *</label>
+                        <select id="new-med-cat" class="w-full p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-sm">
+                            <option value="Antibiotics">Antibiotics</option>
+                            <option value="Pain Relief">Pain Relief</option>
+                            <option value="Cardiovascular">Cardiovascular</option>
+                            <option value="Vitamins">Vitamins</option>
+                            <option value="Respiratory">Respiratory</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Price ($) *</label>
+                        <input type="number" step="0.01" id="new-med-price" required placeholder="12.50" class="w-full p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Stock Qty *</label>
+                        <input type="number" id="new-med-stock" required placeholder="150" class="w-full p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Rx Required</label>
+                        <select id="new-med-rx" class="w-full p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-sm">
+                            <option value="true">Yes (Prescription)</option>
+                            <option value="false">No (OTC)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Image URL</label>
+                    <input type="url" id="new-med-img" placeholder="https://images.unsplash.com/..." class="w-full p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-sm">
+                </div>
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" onclick="closeAddMedicineModal()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-semibold">Cancel</button>
+                    <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-md">Add to Inventory</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-800">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-brand-400 text-lg"></i>
+        <div>
+            <div id="toast-title" class="font-bold text-sm">Success!</div>
+            <div id="toast-message" class="text-xs text-slate-400">Action completed successfully.</div>
+        </div>
+    </div>
+
+    <!-- JavaScript App Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
