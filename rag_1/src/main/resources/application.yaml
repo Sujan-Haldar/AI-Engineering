@@ -1,13 +1,23 @@
 spring:
   application:
-    name: AiAgent
+    name: RAG Application
   ai:
     google:
       genai:
         api-key: XXXXXXXXXXXXXXXXXXX
         chat:
           model: gemini-3.5-flash-lite
+        embedding:
+          api-key: XXXXXXXXXXXXXXXXX
+          text:
+            model: gemini-embedding-001
+            dimensions: 1024
+    vectorstore:
+      pinecone:
+        index-name: shop-support
+        namespace: policies
+        api-key: XXXXXXXXXXXXXX
   profiles:
     active: dev
 server:
-  port: 8081
+  port: 8080
