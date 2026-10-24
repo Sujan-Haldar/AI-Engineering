@@ -7,5 +7,6 @@
 ### 3. Vector Embedding
 - [Link](./vector_embadding_1)
 - Movie recommendation system
+- call `/movies/search?query=sci-fi space related movie` and test.
 ### 4. RAG
 - [Link](./rag_1)

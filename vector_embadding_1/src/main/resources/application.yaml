@@ -1,13 +1,17 @@
 spring:
   application:
-    name: AiAgent
+    name: Vector Embadding
   ai:
     google:
       genai:
-        api-key: XXXXXXXXXXXXXXXXXXX
-        chat:
-          model: gemini-3.5-flash-lite
+        api-key: XXXXXXXXXXXXXX
+        embedding:
+          api-key: XXXXXXXXXXXXXX
+          text:
+            model: gemini-embedding-001
+
+
   profiles:
     active: dev
 server:
-  port: 8081
+  port: 8080
