@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: MCP Server
+  ai:
+    mcp:
+      server:
+        name: mcp-server
+        protocol: streamable
+        version: 1.0.0
+#  profiles:
+#    active: dev
+server:
+  port: 8081
