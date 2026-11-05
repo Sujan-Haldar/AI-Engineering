@@ -1,6 +1,6 @@
 spring:
   application:
-    name: RAG Application
+    name: MCP Host
   ai:
     google:
       genai:
@@ -12,7 +12,7 @@ spring:
         streamable-http:
           connections:
             task-server:
-              url:http://localhost:8081
+              url: http://localhost:8081
   profiles:
     active: dev
 server:
